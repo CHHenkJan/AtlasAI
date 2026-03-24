@@ -76,6 +76,7 @@ img {
   background: rgba(14, 11, 20, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  border-top: 2px solid var(--gold);
   border-bottom: 1px solid var(--border);
   transition: background var(--transition), box-shadow var(--transition);
 }
@@ -142,18 +143,20 @@ img {
 }
 
 .nav-cta {
-  background: var(--gold);
-  color: var(--bg-deep) !important;
+  background: transparent;
+  color: var(--gold) !important;
   padding: 0.6rem 1.5rem;
-  border-radius: 6px;
+  border-radius: 50px;
+  border: 1px solid var(--gold);
   font-weight: 600;
   font-size: 0.85rem;
   letter-spacing: 0.04em;
-  transition: background var(--transition), transform var(--transition);
+  transition: background var(--transition), transform var(--transition), color var(--transition);
 }
 
 .nav-cta:hover {
-  background: var(--gold-light);
+  background: var(--gold);
+  color: var(--bg-deep) !important;
   transform: translateY(-1px);
 }
 
@@ -349,6 +352,11 @@ img {
   margin-bottom: 1.5rem;
 }
 
+.section-title em {
+  color: var(--gold);
+  font-style: italic;
+}
+
 .section-intro {
   font-size: 1.05rem;
   color: var(--text-secondary);
@@ -390,6 +398,9 @@ img {
   margin-bottom: 1.2rem;
   font-size: 1rem;
   line-height: 1.8;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .section-body strong {
