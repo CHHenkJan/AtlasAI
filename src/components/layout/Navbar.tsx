@@ -33,7 +33,7 @@ export function Navbar() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 z-50 relative group">
             <div className="relative w-14 h-14 overflow-hidden rounded-lg">
-              <img src={`${import.meta.env.BASE_URL}atlas-logo.jpg`} alt="Atlas Signals Logo" className="w-full h-full object-contain" />
+              <img src={`${import.meta.env.BASE_URL}atlas-logo.svg`} alt="Atlas Signals Logo" className="w-full h-full object-contain" />
             </div>
             <span className="font-serif font-semibold text-xl tracking-wider text-foreground group-hover:gold-gradient-text transition-all">ATLAS</span>
           </Link>

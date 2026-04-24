@@ -48,7 +48,7 @@ export default function TrackRecord() {
         {/* Table Placeholder */}
         <div className="border border-border rounded-xl overflow-hidden bg-card mb-12">
           <div className="p-6 border-b border-border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <h3 className="font-serif text-xl text-foreground">Recent Paper Trades</h3>
+            <h3 className="font-serif text-xl text-foreground">Recent Paper Spot Trades</h3>
             <span className="px-3 py-1 rounded-full bg-secondary text-xs text-muted-foreground">Auto-updates from API</span>
           </div>
           <div className="overflow-x-auto">
@@ -56,7 +56,6 @@ export default function TrackRecord() {
               <thead className="text-xs uppercase bg-secondary/50 border-b border-border text-foreground">
                 <tr>
                   <th className="px-6 py-4 font-medium">Asset</th>
-                  <th className="px-6 py-4 font-medium">Type</th>
                   <th className="px-6 py-4 font-medium">Entry Date</th>
                   <th className="px-6 py-4 font-medium">Exit Date</th>
                   <th className="px-6 py-4 font-medium text-right">Result</th>
@@ -66,7 +65,6 @@ export default function TrackRecord() {
                 {[1, 2, 3, 4, 5].map((row) => (
                   <tr key={row} className="hover:bg-secondary/20 transition-colors">
                     <td className="px-6 py-4 font-medium text-foreground">BTC/USDT</td>
-                    <td className="px-6 py-4">Long</td>
                     <td className="px-6 py-4">YYYY-MM-DD</td>
                     <td className="px-6 py-4">YYYY-MM-DD</td>
                     <td className="px-6 py-4 text-right">
@@ -88,7 +86,12 @@ export default function TrackRecord() {
             Don't trust screenshots. Verify the complete, unedited history directly on
             the Cryptohopper platform.
           </p>
-          <a href="#" target="_blank" rel="noopener noreferrer" className="inline-flex">
+          <a
+            href="https://www.cryptohopper.com/signaller?signaller_id=741"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex"
+          >
             <Button variant="gold" size="lg" className="rounded-full gap-2">
               View Cryptohopper Dashboard <ExternalLink size={18} />
             </Button>

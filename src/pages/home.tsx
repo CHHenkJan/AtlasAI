@@ -14,11 +14,6 @@ export default function Home() {
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10 text-center flex flex-col items-center">
-          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.1 }} className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-medium uppercase tracking-widest mb-8">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            Verified Paper Trading Track Record
-          </motion.div>
-
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="text-5xl md:text-6xl lg:text-7xl font-serif font-medium tracking-tight text-foreground max-w-4xl leading-[1.1] mb-6">
             Systematic Crypto Investing, <br className="hidden md:block" />
             <span className="gold-gradient-text italic">Built on 200 Years</span> of Financial Research.
@@ -101,11 +96,16 @@ export default function Home() {
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">Atlas runs exclusively on paper trading. Every signal fired, every position opened, every exit — all logged in real-time on Cryptohopper's public dashboard.</p>
               <p className="text-muted-foreground leading-relaxed mb-8">You can verify every number before subscribing. There are no private results, no curated screenshots, and no deleted trades.</p>
-              <Link href="/track-record">
+              <a
+                href="https://www.cryptohopper.com/signaller?signaller_id=741"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex"
+              >
                 <Button variant="outline" className="rounded-full text-foreground hover:text-primary group">
                   View Full Track Record on Cryptohopper <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
-              </Link>
+              </a>
             </div>
             <div className="glass-panel p-8 rounded-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-3xl rounded-full" />
@@ -132,19 +132,23 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { price: "$19/mo", title: "Signals", desc: "Daily buy and sell alerts based on Atlas's methodology. Perfect for traders who want signals without strategy complexity." },
-              { price: "$14/mo", title: "Strategy", desc: "Full Strategy Builder configuration. Download and apply to any hopper. Fully transparent parameters." },
-              { price: "$24 one-time", title: "Template", desc: "Complete bot configuration — coins, sizing, stops, DCA all pre-set exactly as Atlas trades them.", popular: true },
-              { price: "$39/mo", title: "Copy Bot", desc: "Mirror Atlas's paper trading hopper directly. Fully transparent execution without lifting a finger." },
+              { price: "$19/mo", title: "Signals", desc: "Daily buy and sell alerts based on Atlas's methodology. Perfect for traders who want signals without strategy complexity.", url: "https://www.cryptohopper.com/signaller?signaller_id=741" },
+              { price: "$14/mo", title: "Strategy", desc: "Full Strategy Builder configuration. Download and apply to any bot. Fully transparent parameters.", comingSoon: true },
+              { price: "Free", title: "Template", desc: "Complete bot configuration — coins, sizing, stops, DCA all pre-set exactly as Atlas trades them.", popular: true, url: "https://www.cryptohopper.com/marketplace/search?q=Atlas&category%5B%5D=templates" },
+              { price: "$39/mo", title: "Copy Bot", desc: "Mirror Atlas's paper trading bot directly. Fully transparent execution without lifting a finger.", url: "https://www.cryptohopper.com/marketplace/search?q=Atlas&category%5B%5D=copytrading" },
             ].map((p, i) => (
               <div key={i} className={`premium-card p-6 flex flex-col h-full relative overflow-hidden ${p.popular ? 'border-primary/30' : ''}`}>
                 {p.popular && <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-[10px] font-bold px-3 py-1 rounded-bl-lg">POPULAR</div>}
                 <span className="inline-block px-3 py-1 rounded-full bg-secondary text-xs text-primary font-medium mb-4">{p.price}</span>
                 <h3 className="text-xl font-serif text-foreground mb-2">{p.title}</h3>
                 <p className="text-sm text-muted-foreground flex-grow leading-relaxed">{p.desc}</p>
-                <Link href="/products" className="mt-6 block">
-                  <Button variant="ghost" className="w-full text-primary hover:text-primary hover:bg-primary/10">Learn more</Button>
-                </Link>
+                {p.comingSoon ? (
+                  <Button variant="ghost" disabled className="mt-6 w-full text-muted-foreground">Coming soon</Button>
+                ) : (
+                  <a href={p.url} target="_blank" rel="noopener noreferrer" className="mt-6 block">
+                    <Button variant="ghost" className="w-full text-primary hover:text-primary hover:bg-primary/10">Learn more</Button>
+                  </a>
+                )}
               </div>
             ))}
           </div>
