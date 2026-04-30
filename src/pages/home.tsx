@@ -3,8 +3,16 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BarChart2, ShieldCheck, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
+import { useAtlasSignalStats, formatHoldDays, weeksSince } from "@/hooks/useSignalStats";
 
 export default function Home() {
+  const { data } = useAtlasSignalStats();
+  const ext = data?.extended;
+  const totalTrades = ext?.lifetime?.buy?.total_signals ?? null;
+  const winRate = ext?.win_rate_1d_30d_pct ?? null;
+  const avgHold = ext?.avg_hold_seconds ?? null;
+  const firstSignal = ext?.first_signal_time ?? null;
+
   return (
     <PageLayout>
       {/* HERO SECTION */}
@@ -110,10 +118,10 @@ export default function Home() {
             <div className="glass-panel p-8 rounded-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-3xl rounded-full" />
               <div className="grid grid-cols-2 gap-8 relative z-10">
-                <div><p className="text-sm text-muted-foreground mb-1">Total trades</p><p className="text-3xl font-serif text-foreground">[N]</p></div>
-                <div><p className="text-sm text-muted-foreground mb-1">Win rate</p><p className="text-3xl font-serif text-foreground">[X]%</p></div>
-                <div><p className="text-sm text-muted-foreground mb-1">Avg hold time</p><p className="text-3xl font-serif text-foreground">[X] days</p></div>
-                <div><p className="text-sm text-muted-foreground mb-1">Track record</p><p className="text-3xl font-serif text-foreground">[X] weeks</p></div>
+                <div><p className="text-sm text-muted-foreground mb-1">Total trades</p><p className="text-3xl font-serif text-foreground">{totalTrades !== null ? totalTrades.toLocaleString() : "—"}</p></div>
+                <div><p className="text-sm text-muted-foreground mb-1">Win rate</p><p className="text-3xl font-serif text-foreground">{winRate !== null ? `${Math.round(winRate)}%` : "—"}</p></div>
+                <div><p className="text-sm text-muted-foreground mb-1">Avg hold time</p><p className="text-3xl font-serif text-foreground">{formatHoldDays(avgHold)}</p></div>
+                <div><p className="text-sm text-muted-foreground mb-1">Track record</p><p className="text-3xl font-serif text-foreground">{weeksSince(firstSignal)}</p></div>
               </div>
               <div className="mt-8 p-4 bg-destructive/5 border border-destructive/20 rounded-lg flex items-start gap-3">
                 <span className="text-destructive text-lg">⚠️</span>
