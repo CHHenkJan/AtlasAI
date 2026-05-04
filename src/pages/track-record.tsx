@@ -9,10 +9,25 @@ import {
   weeksSince,
 } from "@/hooks/useSignalStats";
 
+// The signaller fires the same logical trade across every supported
+// exchange. Dedupe by (coin, exit_time bucketed to 30 minutes).
+function dedupeTrades<T extends { coin: string; exit_time: number }>(trades: T[]): T[] {
+  const seen = new Set<string>();
+  const out: T[] = [];
+  for (const t of trades) {
+    const bucket = Math.floor((t.exit_time || 0) / 1800);
+    const key = `${t.coin}|${bucket}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(t);
+  }
+  return out;
+}
+
 export default function TrackRecord() {
   const { data } = useAtlasSignalStats();
   const ext = data?.extended;
-  const trades = data?.paired_trades ?? [];
+  const trades = dedupeTrades(data?.paired_trades ?? []);
 
   const stats = [
     {
